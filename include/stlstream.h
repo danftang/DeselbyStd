@@ -1,10 +1,11 @@
+// Allows pretty printing of Standard Template Library containers and classes
 //
 // Created by daniel on 07/05/2021.
 //
 
 
-#ifndef GLPKTEST_STLSTREAM_H
-#define GLPKTEST_STLSTREAM_H
+#ifndef DESELBY_STLSTREAM_H
+#define DESELBY_STLSTREAM_H
 
 #include <vector>
 #include <list>
@@ -85,4 +86,4 @@ std::ostream &operator <<(std::ostream &out, const std::pair<T1,T2> &pair) {
 }
 
 
-#endif //GLPKTEST_STLSTREAM_H
+#endif
