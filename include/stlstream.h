@@ -19,6 +19,7 @@
 #include <unordered_set>
 #include <tuple>
 #include <ranges>
+#include <valarray>
 #include "typeutils.h"
 
 
@@ -55,6 +56,7 @@ template<typename T> std::ostream &operator <<(std::ostream &out, const std::opt
 template<typename T> std::ostream &operator <<(std::ostream &out, const std::valarray<T> &vec);
 template<typename T1, typename T2> std::ostream &operator <<(std::ostream &out, const std::pair<T1,T2> &pair);
 template<class... T> std::ostream &operator <<(std::ostream &out, const std::tuple<T...> &tuple);
+
 
 template<class T, typename = std::enable_if_t<deselby::is_stl_container_v<T>>>
 std::ostream &operator <<(std::ostream &out, const T &container) {
@@ -98,13 +100,18 @@ std::ostream &operator <<(std::ostream &out, const std::pair<T1,T2> &pair) {
 }
 
 
-template<class... T>
-std::ostream &operator <<(std::ostream &out, const std::tuple<T...> &tuple) {
-    out << "< ";
+template<class H, class... T>
+std::ostream &operator <<(std::ostream &out, const std::tuple<H, T...> &tuple) {
+    out << "(" << std::get<0>(tuple);
     [&tuple, &out]<size_t...indices>(std::index_sequence<indices...>) {
-        ((out << std::get<indices>(tuple) << " "),...);
+        ((out << ", " << std::get<indices+1>(tuple)),...);
     }(std::make_index_sequence<sizeof...(T)>());
-    out << ">";
+    out << ")";
+    return out;
+}
+
+std::ostream &operator <<(std::ostream &out, const std::tuple<> & /*emptyTuple*/) {
+    out << "()";
     return out;
 }
 

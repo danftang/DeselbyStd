@@ -138,7 +138,7 @@ namespace deselby {
     template<class T>
     struct is_stl_container<std::valarray<T>> : public std::true_type {
     };
-    template<class T, int N>
+    template<class T, size_t N>
     struct is_stl_container<std::array<T, N>> : public std::true_type {
     };
     template<class KEY, class VAL>
