@@ -7,6 +7,8 @@
 
 int main() {
     std::cout << std::vector<int>{1,2,3,4} << std::endl;
+    std::cout << std::vector<std::pair<int,int>>{{1,2},{2,3}} << std::endl;
+    std::cout << std::pair<std::vector<int>,std::vector<int>>{{1,2},{2,3}} << std::endl;
     std::cout << std::map<int,double>{{1,1.1}, {2,2.2}, {3, 3.3}} << std::endl;
     std::cout << std::valarray<int>{1,2,3,4} << std::endl;
     std::cout << std::chrono::milliseconds(234) << std::endl;
